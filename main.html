@@ -13,28 +13,27 @@
         background-attachment: fixed;
         margin: 0;
         padding: 0;
-        
       }
-      #band {
+      #bands {
         list-style: square;
         background: rgba(255, 255, 255, 0.9);
         max-width: 400px;
-        margin: 50px 20px;
+        margin: 50px auto;
         padding: 0;
         border-radius: 8px;
-        margin-left: 40%;
       }
-      #band li{
+      #bands li {
         padding: 12px 16px;
-         border-bottom: 1px solid #352020;
+        border-bottom: 1px solid #352020;
       }
-      #band li:last-child {
-      border-bottom: none;
-    }
+      #bands li:last-child {
+        border-bottom: none;
+      }
     </style>
   </head>
   <body>
-    <ul id="band"></ul>
+    <ul id="bands"></ul>
+
     <script>
       const bands = [
         "The plot in you",
@@ -46,34 +45,22 @@
         "The Midway State",
         "We Came as Romans",
         "Counterparts",
-        "Oh,Sleeper",
+        "Oh, Sleeper",   // ✅ Fixed space
         "A Skylit Drive",
         "Anywhere But Here",
         "An Old Dog",
       ];
 
-      //Fun to remove the articles from the string
       function removeArticle(name) {
         return name.replace(/^(a |an |the )/i, "").trim();
       }
 
-      //sorting the two string alphabetically(original array is modified it will not create new array (we can assign to the new variable))
       const sortedBands = bands.sort((a, b) =>
         removeArticle(a).localeCompare(removeArticle(b))
       );
 
-      console.log("original array after sorting ", bands);
-
-      //
-      let Parentlist = document.querySelector("#band");
-      console.log(Parentlist);
-
-      let childList = sortedBands.map((band) => {
-        return `<li>${band}</li>`;
-      });
-      console.log(childList); //it will return the array of list with comma seperated
-
-      Parentlist.innerHTML = childList.join(" "); //by joining it wiill added unto the inside the parentHtml as a innerhtml
+      const parentList = document.querySelector("#bands");
+      parentList.innerHTML = sortedBands.map(band => `<li>${band}</li>`).join('');
     </script>
   </body>
 </html>
