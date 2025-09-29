@@ -1,16 +1,79 @@
 <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Article Sorter</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb') no-repeat;
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+        
+      }
+      #band {
+        list-style: square;
+        background: rgba(255, 255, 255, 0.9);
+        max-width: 400px;
+        margin: 50px 20px;
+        padding: 0;
+        border-radius: 8px;
+        margin-left: 40%;
+      }
+      #band li{
+        padding: 12px 16px;
+         border-bottom: 1px solid #352020;
+      }
+      #band li:last-child {
+      border-bottom: none;
+    }
+    </style>
+  </head>
+  <body>
+    <ul id="band"></ul>
+    <script>
+      const bands = [
+        "The plot in you",
+        "The Devil Wears Prada",
+        "Pierce the Veil",
+        "Norma Jean",
+        "The Bled",
+        "Say Anything",
+        "The Midway State",
+        "We Came as Romans",
+        "Counterparts",
+        "Oh,Sleeper",
+        "A Skylit Drive",
+        "Anywhere But Here",
+        "An Old Dog",
+      ];
 
-<html>
+      //Fun to remove the articles from the string
+      function removeArticle(name) {
+        return name.replace(/^(a |an |the )/i, "").trim();
+      }
 
-<head>
-	<link rel="stylesheet" href="styles.css">
-</head>
+      //sorting the two string alphabetically(original array is modified it will not create new array (we can assign to the new variable))
+      const sortedBands = bands.sort((a, b) =>
+        removeArticle(a).localeCompare(removeArticle(b))
+      );
 
-<body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+      console.log("original array after sorting ", bands);
 
-</body>
+      //
+      let Parentlist = document.querySelector("#band");
+      console.log(Parentlist);
 
+      let childList = sortedBands.map((band) => {
+        return `<li>${band}</li>`;
+      });
+      console.log(childList); //it will return the array of list with comma seperated
+
+      Parentlist.innerHTML = childList.join(" "); //by joining it wiill added unto the inside the parentHtml as a innerhtml
+    </script>
+  </body>
 </html>
